@@ -1409,8 +1409,17 @@ public class PromptOptions<T extends PromptOptions>
         {
             return null;
         }
-        final MaterialTapTargetPrompt mPrompt = MaterialTapTargetPrompt.createDefault(this);
+        return this.prepare(MaterialTapTargetPrompt.createDefault(this));
+    }
 
+    /**
+     * Applies the configuration from this prompt builder to the supplied prompt.
+     *
+     * @param prompt The prompt to configure.
+     * @return The configured prompt supplied in the parameters.
+     */
+    public MaterialTapTargetPrompt prepare(final MaterialTapTargetPrompt prompt)
+    {
         if (mAnimationInterpolator == null)
         {
             mAnimationInterpolator = new AccelerateDecelerateInterpolator();
@@ -1447,7 +1456,7 @@ public class PromptOptions<T extends PromptOptions>
             ((CirclePromptFocal) mPromptFocal).setRadius(getFocalRadius());
         }
 
-        return mPrompt;
+        return prompt;
     }
 
     /**

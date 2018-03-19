@@ -309,6 +309,28 @@ public class MaterialTapTargetPrompt
 
 
     /**
+     * Reuse this prompt to show another prompt.
+     *
+     * @param promptOptions The builder to get the configuration from.
+     * @return this prompt or null if the apply failed to find the target.
+     */
+    @Nullable
+    public MaterialTapTargetPrompt showNext(final PromptOptions promptOptions)
+    {
+        if (!this.isComplete())
+        {
+            this.dismiss();
+        }
+        mView.mPromptOptions = promptOptions;
+        final MaterialTapTargetPrompt prompt = promptOptions.prepare(this);
+        if (prompt != null)
+        {
+            this.show();
+        }
+        return prompt;
+    }
+
+    /**
      * Get the current state of the prompt.
      *
      * @see #STATE_NOT_SHOWN
